@@ -30,6 +30,7 @@ def dictionary(filename):
         for raw in spamreader:
             if len(raw) != 2:
                 print "Problem in CSV file, more than 2 items in a raw"
+                print raw
                 return None
             dic[raw[0]] = raw[1]
     return dic
@@ -57,6 +58,6 @@ if __name__ == '__main__':
         print "Usage: python script.py file1.txt file2.txt ..."
     else:
         dic = dictionary("dic.csv")
-        # print dic
-        for filename in args[1:]:
-            translate(filename, dic)
+        if dic is not None:
+            for filename in args[1:]:
+                translate(filename, dic)
